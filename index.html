@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXTOSYS AI Dashboard</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#050505;
+  color:white;
+}
+
+.dashboard{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:320px;
+  background:#0a0a0a;
+  border-right:2px solid #1f1f1f;
+  padding:30px 20px;
+  position:relative;
+}
+
+.profile{
+  margin-top:20px;
+}
+
+.profile-img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:2px solid red;
+  margin-bottom:25px;
+  box-shadow:0 0 20px red;
+  object-fit:cover;
+}
+
+.welcome{
+  font-size:20px;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.premium{
+  background:#6b0000;
+  padding:8px 18px;
+  border-radius:20px;
+  display:inline-block;
+  margin-top:10px;
+  margin-bottom:20px;
+}
+
+.help-text{
+  color:white;
+  font-size:20px;
+  margin-top:10px;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.help-email{
+  color:#bdbdbd;
+  font-size:15px;
+  line-height:24px;
+  margin-bottom:35px;
+}
+
+.subscription{
+  margin-top:30px;
+}
+
+.subscription h2{
+  margin-bottom:15px;
+}
+
+.sub-card{
+  background:#111;
+  border:1px solid #2d2d2d;
+  border-radius:20px;
+  padding:20px;
+  margin-top:20px;
+}
+
+.logout{
+  position:absolute;
+  bottom:30px;
+  left:20px;
+  width:85%;
+}
+
+.logout button{
+  width:100%;
+  padding:15px;
+  background:red;
+  border:none;
+  border-radius:12px;
+  color:white;
+  font-size:17px;
+  cursor:pointer;
+}
+
+/* MAIN */
+
+.main{
+  flex:1;
+  padding:30px;
+}
+
+/* SEARCH */
+
+.search-bar{
+  width:100%;
+  margin-bottom:25px;
+}
+
+.search-bar input{
+  width:100%;
+  padding:18px;
+  border-radius:15px;
+  border:none;
+  background:#111;
+  color:white;
+  font-size:16px;
+  outline:none;
+  border:1px solid #2b2b2b;
+}
+
+/* HEADING */
+
+.main-heading{
+  margin-bottom:35px;
+  text-align:center;
+}
+
+.welcome-text{
+  color:#bdbdbd;
+  font-size:32px;
+  margin-bottom:12px;
+  font-weight:400;
+}
+
+.main-title{
+  font-size:85px;
+  color:white;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.sub-text{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.sub-text span{
+  background:#111;
+  border:1px solid #1f1f1f;
+  padding:8px 18px;
+  border-radius:20px;
+  color:#bdbdbd;
+  font-size:14px;
+}
+
+/* TOP CARDS */
+
+.top-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  margin-bottom:40px;
+}
+
+.mini-card{
+  border-radius:20px;
+  padding:35px;
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.mini-card:hover{
+  transform:translateY(-5px);
+}
+
+/* WHITE CARDS */
+
+.white-card{
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:28px;
+
+  color:white;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+
+  transition:0.5s ease;
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,0.12),
+    inset 0 0 20px rgba(255,255,255,0.03);
+
+}
+
+/* ANIMATED BORDER */
+
+.white-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-2px;
+
+  border-radius:30px;
+
+  padding:2px;
+
+  background:
+  linear-gradient(
+    130deg,
+    red,
+    #ff4d4d,
+    #8b0000,
+    transparent,
+    red
+  );
+
+  background-size:400% 400%;
+
+  animation:borderGlow 8s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+
+}
+
+/* FLOATING GLOW */
+
+.white-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:280px;
+  height:280px;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(255,0,0,0.25),
+    transparent 70%
+  );
+
+  top:-120px;
+  left:-80px;
+
+  animation:floatGlow 7s ease infinite;
+}
+
+/* HOVER EFFECT */
+
+.white-card:hover{
+
+  transform:
+    translateY(-10px)
+    scale(1.03);
+
+  box-shadow:
+    0 0 35px rgba(255,0,0,0.3),
+    0 0 60px rgba(255,0,0,0.15);
+
+}
+
+/* TEXT */
+
+.white-card h2{
+
+  position:relative;
+  z-index:2;
+
+  color:white;
+
+  font-size:38px;
+
+  margin-bottom:18px;
+
+  letter-spacing:1px;
+
+  text-shadow:
+    0 0 12px rgba(255,0,0,0.3);
+
+}
+
+.white-card p{
+
+  position:relative;
+  z-index:2;
+
+  color:#d1d1d1;
+
+  font-size:18px;
+
+  line-height:28px;
+
+}
+
+/* BORDER ANIMATION */
+
+@keyframes borderGlow{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+/* GLOW FLOAT */
+
+@keyframes floatGlow{
+
+  0%{
+    transform:translate(0,0);
+  }
+
+  50%{
+    transform:translate(120px,70px);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
+
+}
+
+
+
+/* TIME */
+
+.time-box{
+  background:#0d0d0d;
+  border:1px solid #1f1f1f;
+}
+
+.time-box h2{
+  color:red;
+  margin-bottom:10px;
+}
+
+.time{
+  font-size:45px;
+  margin-top:20px;
+  font-weight:bold;
+}
+
+/* UPDATES */
+
+.updates{
+  margin-top:20px;
+}
+
+.updates h2{
+  margin-bottom:25px;
+  font-size:38px;
+}
+
+.updates-column{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.small-update-card{
+  background:#1a0000;
+  border:1px solid #330000;
+  border-radius:18px;
+  padding:18px;
+  transition:0.3s;
+}
+
+.small-update-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 15px rgba(255,0,0,0.3);
+}
+
+.small-update-card h3{
+  margin-bottom:10px;
+  font-size:20px;
+  color:white;
+}
+
+.small-update-card p{
+  color:#d1d1d1;
+  font-size:14px;
+  line-height:22px;
+}
+
+
+/* SUPPORT */
+
+.support-wrapper{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:50px;
+  margin-bottom:40px;
+}
+
+.support-card{
+  width:850px;
+  background:#111;
+  border:1px solid #2a2a2a;
+  border-radius:25px;
+  padding:40px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.support-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(255,0,0,0.3);
+}
+
+.support-card h2{
+  color:red;
+  font-size:50px;
+  margin-bottom:18px;
+}
+
+.support-card p{
+  color:#bdbdbd;
+  font-size:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+  .dashboard{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+  }
+
+  .top-cards{
+    grid-template-columns:1fr;
+  }
+
+  .main-title{
+    font-size:55px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .dashboard{
+    flex-direction:column;
+  }
+
+  /* SIDEBAR */
+
+  .sidebar{
+    width:100%;
+    border-right:none;
+    border-bottom:2px solid #1f1f1f;
+    padding:25px;
+  }
+
+  .logout{
+    position:relative;
+    width:100%;
+    left:0;
+    bottom:0;
+    margin-top:30px;
+  }
+
+  /* MAIN */
+
+  .main{
+    padding:20px;
+  }
+
+  /* SEARCH */
+
+  .search-bar input{
+    padding:16px;
+    font-size:15px;
+  }
+
+  /* HEADING */
+
+  .welcome-text{
+    font-size:24px;
+  }
+
+  .main-title{
+    font-size:42px;
+    line-height:55px;
+  }
+
+  .sub-text{
+    justify-content:center;
+    gap:10px;
+  }
+
+  .sub-text span{
+    font-size:13px;
+    padding:7px 14px;
+  }
+
+  /* TOP CARDS */
+
+  .top-cards{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .mini-card{
+    padding:28px;
+  }
+
+  /* TIME */
+
+  .time{
+    font-size:38px;
+  }
+
+  /* UPDATE CARDS */
+
+  .updates-column{
+    grid-template-columns:1fr;
+  }
+
+  .small-update-card{
+    padding:22px;
+  }
+
+  .small-update-card h3{
+    font-size:22px;
+  }
+
+  .small-update-card p{
+    font-size:15px;
+  }
+
+  /* SUPPORT */
+
+  .support-card{
+    width:100%;
+    padding:30px 20px;
+  }
+
+  .support-card h2{
+    font-size:34px;
+  }
+
+  .support-card p{
+    font-size:16px;
+  }
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="profile">
+
+<img 
+src="assets/profile.png.jpeg"
+class="profile-img"
+>
+
+<div class="welcome">
+Welcome Dear Client
+</div>
+
+<div class="premium">
+Premium
+</div>
+
+<div class="help-text">
+FOR HELP
+</div>
+
+<div class="help-email">
+CONTACT - help@nextosys.unigrow.io
+</div>
+
+</div>
+
+<div class="subscription">
+
+<h2>Your Subscriptions</h2>
+
+<div class="sub-card">
+
+<h3>All in 1 Pack</h3>
+
+<br>
+
+<p>Status: Active</p>
+
+</div>
+
+</div>
+
+<div class="logout">
+
+<button>
+Logout
+</button>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- SEARCH -->
+
+<div class="search-bar">
+
+<input 
+type="text"
+placeholder="Search tools..."
+>
+
+</div>
+
+<!-- HEADING -->
+
+<div class="main-heading">
+
+<h3 class="welcome-text">
+Welcome To
+</h3>
+
+<h1 class="main-title">
+NEXTOSYS AI
+</h1>
+
+<div class="sub-text">
+
+<span>300+ Tools</span>
+<span>30+ Bots</span>
+<span>24/7 Access</span>
+
+</div>
+
+</div>
+
+<!-- TOP CARDS -->
+
+<div class="top-cards">
+
+<div 
+class="mini-card white-card"
+onclick="window.location.href='premium-bots.html'"
+>
+
+<div class="card-center">
+
+<h2>Premium Bots</h2>
+
+<p>
+Access AI automation bots
+</p>
+
+</div>
+
+</div>
+
+<div 
+class="mini-card white-card"
+onclick="window.location.href='tools.html'"
+>
+
+<div class="card-center">
+
+<h2>Premium Tools</h2>
+
+<p>
+Access all premium tools
+</p>
+
+</div>
+
+</div>
+
+<!-- LIVE TIME -->
+
+<div class="mini-card time-box">
+
+<h2>Local Time 🇮🇳</h2>
+
+<p id="liveDate"></p>
+
+<div 
+class="time"
+id="liveTime"
+>
+00:00:00
+</div>
+
+</div>
+
+</div>
+
+<!-- UPDATES -->
+
+<div class="updates">
+
+<h2>Latest Updates</h2>
+
+<div class="updates-column">
+
+<div class="small-update-card">
+
+<h3>New added! 🚀</h3>
+
+<p>
+New premium tools added.
+</p>
+
+</div>
+
+<div class="small-update-card">
+
+<h3>Feature Launch 🚀</h3>
+
+<p>
+Explore latest AI features.
+</p>
+
+</div>
+
+<div class="small-update-card">
+
+<h3>Community Event 🎉</h3>
+
+<p>
+Join our daily updates channel.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- SUPPORT -->
+
+<div class="support-wrapper">
+
+<div 
+class="support-card"
+onclick="window.location.href='support.html'"
+>
+
+<h2>Tools Not Working?</h2>
+
+<p>
+Click here to raise a complaint or contact support.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- LIVE INDIAN TIME -->
+
+<script>
+
+function updateIndianTime(){
+
+const now = new Date();
+
+const dateOptions = {
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric',
+timeZone:'Asia/Kolkata'
+};
+
+const timeOptions = {
+hour:'2-digit',
+minute:'2-digit',
+second:'2-digit',
+hour12:true,
+timeZone:'Asia/Kolkata'
+};
+
+document.getElementById("liveDate").innerHTML =
+now.toLocaleDateString('en-IN', dateOptions);
+
+document.getElementById("liveTime").innerHTML =
+now.toLocaleTimeString('en-IN', timeOptions);
+
+}
+
+setInterval(updateIndianTime,1000);
+
+updateIndianTime();
+
+</script>
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a19c642b457791c39353f1b/1jpqastid';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</script>
+
+</body>
+
+</body>
+</html>
+
