@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Premium Bots</title>
+
+  <style>
+
+    body{
+      background:#0b1023;
+      margin:0;
+      font-family:Arial;
+    }
+
+    .heading{
+      text-align:center;
+      color:white;
+      padding:40px;
+    }
+
+    .heading h1{
+      font-size:55px;
+      color:#ff3b5c;
+    }
+
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+      padding:40px;
+    }
+
+    .tool-card{
+      background:white;
+      border-radius:20px;
+      padding:25px;
+      text-align:center;
+      transition:0.3s;
+      box-shadow:0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .tool-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 0 20px rgba(255,59,92,0.4);
+    }
+
+    .tool-logo{
+      width:80px;
+      margin-bottom:20px;
+    }
+
+    .tool-card h3{
+      color:black;
+      font-size:22px;
+      margin-bottom:20px;
+      min-height:60px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .access-btn{
+      padding:12px 28px;
+      border:none;
+      border-radius:12px;
+      background:#2d8f73;
+      color:white;
+      font-size:17px;
+      cursor:pointer;
+    }
+
+    .access-btn:hover{
+      background:#1f6b56;
+    }
+
+    
+.top-bar{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  margin-bottom:20px;
+  gap:20px;
+}
+
+.back-btn{
+  padding:14px 25px;
+  background:red;
+  color:white;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.back-btn:hover{
+  background:#c40000;
+}
+
+#searchInput{
+  flex:1;
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  background:#111;
+  color:white;
+  font-size:16px;
+  outline:none;
+  border:1px solid #2d2d2d;
+}
+```
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="heading">
+
+    <h1>Premium Custom Made Bots</h1>
+
+  </div>
+
+  ```html id="x5k7qp"
+<!-- TOP BAR -->
+
+<div class="top-bar">
+
+  <!-- BACK BUTTON -->
+
+  <button 
+    class="back-btn"
+    onclick="window.location.href='index.html'"
+  >
+
+    ⬅ Back
+
+  </button>
+
+  <!-- SEARCH BAR -->
+
+  <input 
+    type="text"
+    id="searchInput"
+    placeholder="Search bots..."
+    onkeyup="searchBots()"
+  >
+
+</div>
+```
+<div class="tools-grid">
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" class="tool-logo">
+      <h3>Ad Creative Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="tool-logo">
+      <h3>Campaign Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="tool-logo">
+      <h3>Social Media Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2784/2784464.png" class="tool-logo">
+      <h3>Course Creator Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png" class="tool-logo">
+      <h3>Email Marketing Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" class="tool-logo">
+      <h3>SEO Content Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1998/1998087.png" class="tool-logo">
+      <h3>Brand Voice Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="tool-logo">
+      <h3>Landing Page Copy Bot</h3>
+      <button class="access-btn">ACCESS</button>
+    </div>
+
+  </div>
+```html id="j2m9qx"
+<script>
+
+function searchBots(){
+
+  let input = document.getElementById("searchInput").value.toLowerCase();
+
+  let cards = document.querySelectorAll(".tool-card");
+
+  cards.forEach(card => {
+
+    let text = card.innerText.toLowerCase();
+
+    if(text.includes(input)){
+
+      card.style.display = "block";
+
+    }
+
+    else{
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+}
+
+</script>
+```
+
+</body>
+</html>
